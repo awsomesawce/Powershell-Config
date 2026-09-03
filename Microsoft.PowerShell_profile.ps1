@@ -1,24 +1,22 @@
 # Rewrite of the Powershell profile
 
-# ENVVARS
-
+# Environment Variables
 $env:POWERSHELL_TELEMETRY_OPTOUT = 1
 $env:PAGER = "less"
 $env:OLDPATH = $env:PATH.Clone()
-
 $env:PATH = "C:/Users/Carl/bin;$env:PATH"
 
+# Dot-source functions
+. "$psscriptroot/functions/Get-ProjectDirectory.ps1"
 
 function Get-InstalledThemes {
-
     <#
     .SYNOPSIS
     Get installed oh-my-posh themes.
     .DESCRIPTION
     Gets installed oh-my-posh themes from default location.
     #>
-
-    [cmdletbinding()]
+    [CmdletBinding()]
     param()
 
     if (Test-Path $env:POSH_THEMES_PATH) {

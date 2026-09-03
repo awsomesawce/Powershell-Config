@@ -47,7 +47,7 @@ function which {
 
     if ($All) {
         Write-Debug "DEBUG: ALL"
-        return gcm -All $cmdname | Select-Object -ExpandProperty Path
+        return Get-Command -All $cmdname | Select-Object -ExpandProperty Path
     }
     return (get-command $cmdname).Path.ToString()
 }

@@ -33,25 +33,29 @@ function Get-InstalledThemes {
 function which {
     <#.SYNOPSIS
     Just like unix which.  Returns only a string.
+    .DESCRIPTION
+    A wrapper around `Get-Command` which returns the location of the command as a string.
     .PARAMETER cmdname
     Name of command to look up.
     .PARAMETER All
     Return all that match cmd name
+    .NOTES
+    Only works on installed applications or commands which live in a file.
     #>
     param(
-        [Parameter(Position = 0, HelpMessage = "Name of command to look up.")]
-        [string]$cmdname,
+        [Parameter(Position = 0, Mandatory, HelpMessage = "Name of command")]
+        [string]$CommandName,
 
-        [Parameter(Position = 1, ValueFromPipelineByPropertyName = $true, HelpMessage = "ShowAll")]
+        [Parameter(Position = 1, HelpMessage = "Show all locations of a given command")]
         [Alias("-a")]
         [switch]$All
     )
 
     if ($All) {
-        Write-Debug "DEBUG: ALL"
-        return Get-Command -All $cmdname | Select-Object -ExpandProperty Path
+        Write-Debug "DEBUG: Get all commands matching $CommandName"
+        return Get-Command -Name $CommandName -All | Select-Object -ExpandProperty Path
     }
-    return (get-command $cmdname).Path.ToString()
+    return (get-command $CommandName).Path.ToString()
 }
 
 # TODO: Change or remove Prepare-Pipenv
@@ -70,7 +74,6 @@ New-Alias chtsh C:\Users\Carl\Documents\BASICS\getChtsh.ps1 `
 Import-Module $env:USERPROFILE/BASICS/SearchTools/SearchTools.psd1
 
 new-alias g git -Description "Super short git invokation ftw.  1/3 the length!"
-
 
 Set-Alias pn pnpm
 Set-Alias fe ForEach-Object

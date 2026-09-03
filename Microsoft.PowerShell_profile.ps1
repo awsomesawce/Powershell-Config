@@ -12,9 +12,11 @@ $env:PATH = "C:/Users/Carl/bin;$env:PATH"
 function Get-InstalledThemes {
 
     <#
-.DESCRIPTION
-Gets installed oh-my-posh themes from scoop installed omp.
-#>
+    .SYNOPSIS
+    Get installed oh-my-posh themes.
+    .DESCRIPTION
+    Gets installed oh-my-posh themes from default location.
+    #>
 
     [cmdletbinding()]
     param()
@@ -52,7 +54,7 @@ function which {
     return (get-command $cmdname).Path.ToString()
 }
 
-
+# TODO: Change or remove Prepare-Pipenv
 new-alias Prepare-Pipenv C:\Users\Carl\Documents\virt_env_test\pipenv_test\preparepipenv.ps1 -Description @"
 Adds location of ``pipenv`` to `$PATH
 "@ -Option None -Scope Local
@@ -64,6 +66,7 @@ New-Alias -Name msysshell -Value "$msyslocation\msys2_shell.cmd" -Description "m
 New-Alias chtsh C:\Users\Carl\Documents\BASICS\getChtsh.ps1 `
     -Description "Chtsh function"
 
+# TODO: Move module to $env:PSModulePath
 Import-Module $env:USERPROFILE/BASICS/SearchTools/SearchTools.psd1
 
 new-alias g git -Description "Super short git invokation ftw.  1/3 the length!"
@@ -73,4 +76,4 @@ Set-Alias pn pnpm
 Set-Alias fe ForEach-Object
 Set-Alias sel Select-Object
 
-oh-my-posh init pwsh --config C:\Users\Carl\scoop\apps\oh-my-posh\current\themes\sonicboom_dark.omp.json | invoke-expression
+oh-my-posh init pwsh --config multiverse-neon | invoke-expression

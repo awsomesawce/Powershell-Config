@@ -71,7 +71,7 @@ New-Alias chtsh C:\Users\Carl\Documents\BASICS\getChtsh.ps1 `
     -Description "Chtsh function"
 
 # TODO: Move module to $env:PSModulePath
-Import-Module $env:USERPROFILE/BASICS/SearchTools/SearchTools.psd1
+Import-Module $env:USERPROFILE/Documents/BASICS/SearchTools/SearchTools.psd1
 
 new-alias g git -Description "Super short git invokation ftw.  1/3 the length!"
 

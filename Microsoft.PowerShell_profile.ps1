@@ -6,8 +6,15 @@ $env:PAGER = "less"
 $env:OLDPATH = $env:PATH.Clone()
 $env:PATH = "C:/Users/Carl/bin;$env:PATH"
 
+# Edit PSModulePath
+$env:PSModulePath = @(
+    (Join-Path $PSScriptRoot 'MyModules')
+    $env:PSModulePath
+) -join [IO.Path]::PathSeparator
+
 # Dot-source functions
 . "$psscriptroot/functions/Get-ProjectDirectory.ps1"
+
 
 function Get-InstalledThemes {
     <#

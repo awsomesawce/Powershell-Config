@@ -7,6 +7,12 @@ Here is where my current configuration for [PowerShell] lives.
 - `Get-InstalledThemes` - Gets a list of themes installed by [Oh-My-Posh]
 - `which` - a wrapper around Get-Command which simply returns the location of the command.
 
+### Modules
+
+* `Formatters` - Contains PowerShell filters for transforming command output.
+  * `Format-ScoopInfo` - A pipeline filter that formats `scoop info` output as a Markdown list item containing the package name, website, and description.
+
+
 ## What's Not Included
 
 Some modules and commands which are referenced in this profile are not included in this GitHub repository.

@@ -18,7 +18,7 @@ function Get-ScoopCompletions {
     .NOTES
     Toying with whether or not to include the Where block for filtering out symlinked directories.
     Scoop installs apps into a "current" directory that is symlinked to the latest version.
-    Where-Object { $null -eq $_.Directory.LinkType } will filter out symlinked directories.
+        `Where-Object { $null -eq $_.Directory.LinkType }` will filter out symlinked directories.
     #>
     [CmdletBinding()]
     param(
@@ -33,8 +33,7 @@ function Get-ScoopCompletions {
 
     $appsRoot = Join-Path $ScoopHome "apps"
 
-    Get-ChildItem -Path $appsRoot -Filter "_*.ps1" -Recurse -ErrorAction SilentlyContinue |
-        Where-Object { $null -eq $_.Directory.LinkType }
+    Get-ChildItem -Path $appsRoot -Filter "_*.ps1" -Recurse -Depth 5  -ea silentlycontinue
 }
 
 function Enable-ScoopCompletions {

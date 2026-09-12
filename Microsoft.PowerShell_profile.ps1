@@ -84,4 +84,4 @@ Set-Alias pn pnpm
 Set-Alias fe ForEach-Object
 Set-Alias sel Select-Object
 
-oh-my-posh init pwsh --config multiverse-neon | invoke-expression
+oh-my-posh init pwsh --config tokyonight_storm | invoke-expression

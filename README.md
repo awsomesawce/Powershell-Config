@@ -12,6 +12,10 @@ Here is where my current configuration for [PowerShell] lives.
 * `Formatters` - Contains PowerShell filters for transforming command output.
   * `Format-ScoopInfo` - A pipeline filter that formats `scoop info` output as a Markdown list item containing the package name, website, and description.
 
+* `ScoopCompletions` - A module that finds completion scripts for programs installed by [Scoop]. See my post about it [here][Post about ScoopCompletions].
+* `MyUtils` - A module that contains a few utility functions (for now).
+  * `Select-OmpTheme` - Use `fzf` to switch between [Oh-My-Posh] themes.
+
 
 ## What's Not Included
 
@@ -24,8 +28,11 @@ Some modules and commands which are referenced in this profile are not included 
 
 - [ ] Include the functionality mentioned in _What's Not Included_.
 - [ ] Add more convenience functions.
+- [ ] Move ScoopCompletions into its own repository.
 
 I use [Oh-My-Posh] as my prompt of choice. Install it using `winget install JanDeDobbeleer.OhMyPosh` or `scoop install oh-my-posh`
 
 [PowerShell]: https://github.com/PowerShell/PowerShell
 [Oh-My-Posh]: https://ohmyposh.dev
+[Scoop]: https://scoop.sh
+[Post about ScoopCompletions]: https://dev.to/awsomesawce/powershell-completions-installed-by-scoop-1pnd

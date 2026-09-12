@@ -32,7 +32,6 @@ function Get-InstalledThemes {
     else {
         Write-Error "Did not find oh-my-posh themes at $env:POSH_THEMES_PATH"
     }
-
 }
 
 function which {

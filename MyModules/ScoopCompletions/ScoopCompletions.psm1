@@ -33,7 +33,10 @@ function Get-ScoopCompletions {
 
     $appsRoot = Join-Path $ScoopHome "apps"
 
-    Get-ChildItem -Path $appsRoot -Filter "_*.ps1" -Recurse -Depth 5  -ea silentlycontinue
+    return Get-ChildItem -Path $appsRoot -Directory -Filter "current" -Depth 1 -Recurse -ea SilentlyContinue |
+        ForEach-Object {
+            Get-ChildItem -Path $_.FullName -Filter "_*.ps1" -Recurse -Depth 4 -ea SilentlyContinue
+        }
 }
 
 function Enable-ScoopCompletions {
@@ -44,6 +47,8 @@ function Enable-ScoopCompletions {
     Loads Scoop completion scripts into the current session.
     .PARAMETER ScoopHome
     The path to the Scoop home directory. Default is ~\scoop
+    .EXAMPLE
+    Enable-ScoopCompletions
     .EXAMPLE
     Enable-ScoopCompletions -ScoopHome "C:\Users\username\scoop"
     #>
@@ -61,10 +66,11 @@ function Enable-ScoopCompletions {
     }
 
     foreach ($script in $scripts) {
+        Write-Verbose "Sourcing $($script.FullName)"
         . $script.FullName
     }
 
-    Write-Verbose "Scoop completions loaded."
+    Write-Verbose "Completions enabled."
 }
 
 Export-ModuleMember -Function Get-ScoopCompletions, Enable-ScoopCompletions

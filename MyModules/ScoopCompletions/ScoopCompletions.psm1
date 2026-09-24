@@ -33,9 +33,9 @@ function Get-ScoopCompletions {
 
     $appsRoot = Join-Path $ScoopHome "apps"
 
-    return Get-ChildItem -Path $appsRoot -Directory -Filter "current" -Depth 1 -Recurse -ea SilentlyContinue |
+    return Get-ChildItem -Path $appsRoot -Directory -Filter "current" -Depth 1 -ea SilentlyContinue |
         ForEach-Object {
-            Get-ChildItem -Path $_.FullName -Filter "_*.ps1" -Recurse -Depth 4 -ea SilentlyContinue
+            Get-ChildItem -Path $_.FullName -Filter "_*.ps1" -Depth 4 -ea SilentlyContinue
         }
 }
 

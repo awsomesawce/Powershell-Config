@@ -1,13 +1,5 @@
-filter Format-ScoopInfo {
-   <#
-   .SYNOPSIS
-   Filter output from `scoop info`.
-   .DESCRIPTION
-   Filter output of `scoop info` into a markdown list.
-   .EXAMPLE
-   scoop info git | Format-ScoopInfo
-   #>
-   "* [$($_.Name)]($($_.Website)): $($_.Description)"
-}
-
-Export-ModuleMember -Functions "Format-ScoopInfo"
+# Formatters.psm1
+# Import public functions programmatically
+$Public = Get-ChildItem -Path "$PSScriptRoot\Public\*.ps1"
+foreach ($file in $Public) { . $file.FullName }
+Export-ModuleMember -Function $Public.BaseName

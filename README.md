@@ -1,6 +1,6 @@
 # Powershell Config
 
-Here is where my current configuration for [PowerShell] lives.
+Powershell config with a few homebrew modules.
 
 ## What's Included
 

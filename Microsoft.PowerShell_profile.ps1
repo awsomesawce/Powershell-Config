@@ -3,7 +3,6 @@
 # Environment Variables
 $env:POWERSHELL_TELEMETRY_OPTOUT = 1
 $env:PAGER = "less"
-$env:OLDPATH = $env:PATH
 $env:PATH = "C:/Users/Carl/bin;$env:PATH"
 
 # Edit PSModulePath
@@ -17,39 +16,6 @@ $env:PSModulePath = @(
 
 # Moved Get-InstalledThemes to MyUtils module
 
-function which {
-    <#.SYNOPSIS
-    Just like unix which.  Returns only a string.
-    .DESCRIPTION
-    A wrapper around `Get-Command` which returns the location of the command as a string.
-    .PARAMETER cmdname
-    Name of command to look up.
-    .PARAMETER All
-    Return all that match cmd name
-    .NOTES
-    Only works on installed applications or commands which live in a file.
-    #>
-    param(
-        [Parameter(Position = 0, Mandatory, HelpMessage = "Name of command")]
-        [string]$CommandName,
-
-        [Parameter(Position = 1, HelpMessage = "Show all locations of a given command")]
-        [Alias("-a")]
-        [switch]$All
-    )
-
-    if ($All) {
-        Write-Debug "DEBUG: Get all commands matching $CommandName"
-        return Get-Command -Name $CommandName -All | Select-Object -ExpandProperty Path
-    }
-    return (get-command $CommandName).Path.ToString()
-}
-
-# TODO: Change or remove Prepare-Pipenv
-new-alias Prepare-Pipenv C:\Users\Carl\Documents\virt_env_test\pipenv_test\preparepipenv.ps1 -Description @"
-Adds location of ``pipenv`` to `$PATH
-"@ -Option None -Scope Local
-
 $Script:msyslocation = "$env:USERPROFILE\scoop\apps\msys2\current"
 
 New-Alias -Name msysshell -Value "$msyslocation\msys2_shell.cmd" -Description "msys2_shell.cmd alias"
@@ -62,8 +28,8 @@ Import-Module $env:USERPROFILE/Documents/BASICS/SearchTools/SearchTools.psd1
 
 new-alias g git -Description "Super short git invokation ftw.  1/3 the length!"
 
-Set-Alias pn pnpm
-Set-Alias fe ForEach-Object
-Set-Alias sel Select-Object
-
-oh-my-posh init pwsh --config tokyonight_storm | invoke-expression
+# Prompt
+if (Get-Command oh-my-posh -ErrorAction Ignore) {
+    oh-my-posh init pwsh --config 'tokyonight_storm' |
+        Invoke-Expression
+}

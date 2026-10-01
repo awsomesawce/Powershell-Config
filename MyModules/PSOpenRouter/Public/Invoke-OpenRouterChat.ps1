@@ -2,14 +2,24 @@ function Invoke-OpenRouterChat {
     <#
     .SYNOPSIS
     Sends a chat request to the OpenRouter API.
+
     .DESCRIPTION
-    Sends a chat request to the OpenRouter API using the specified prompt and model.
+    Sends a chat request to the OpenRouter API using the specified prompt
+    and model.
+
     .PARAMETER Prompt
     The prompt to send to the chat model.
+
     .PARAMETER Model
     The model to use for the chat request. Defaults to "openrouter/auto".
+
     .PARAMETER ApiKey
-    The API key to use for the request. Defaults to the value of the OPENROUTER_API_KEY environment variable.
+    The API key to use for the request. Defaults to the value of the
+    OPENROUTER_API_KEY environment variable.
+
+    .PARAMETER PassThru
+    Returns the complete OpenRouter API response instead of only the
+    generated message content.
     #>
     [CmdletBinding()]
     param(
@@ -22,7 +32,9 @@ function Invoke-OpenRouterChat {
 
         [string]$Model = "openrouter/auto",
 
-        [string]$ApiKey = $env:OPENROUTER_API_KEY
+        [string]$ApiKey = $env:OPENROUTER_API_KEY,
+
+        [switch]$PassThru
     )
 
     process {
@@ -45,6 +57,11 @@ function Invoke-OpenRouterChat {
             -ContentType "application/json" `
             -Body $body
 
-        $response.choices[0].message.content
+        if ($PassThru) {
+            $response
+        }
+        else {
+            $response.choices[0].message.content
+        }
     }
 }

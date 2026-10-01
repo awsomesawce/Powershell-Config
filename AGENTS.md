@@ -15,5 +15,5 @@ These directories have modules, scripts, and help files which are installed usin
 
 ## Commit messages
 
-I want commit messages to follow conventional commits. You can find more information about conventional commits [here](https://www.conventionalcommits.org/).
+I want commit messages to follow conventional commits guidelines. You can find more information about conventional commits [here](https://www.conventionalcommits.org/).
 They should be concise, clear, and follow the conventional commit format.

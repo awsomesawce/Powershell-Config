@@ -30,7 +30,9 @@ function Invoke-OpenRouterChat {
         )]
         [string]$Prompt,
 
-        [string]$Model = "openrouter/auto",
+        [Parameter(HelpMessage="The model to use for the chat request. Defaults to 'openrouter/free'.")]
+        [ValidateSet("openrouter/free", "openrouter/auto", "nvidia/nemotron-3.5-lightning:free")]
+        [string]$Model = "openrouter/free",
 
         [string]$ApiKey = $env:OPENROUTER_API_KEY,
 

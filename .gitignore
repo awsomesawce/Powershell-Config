@@ -163,4 +163,4 @@ dist
 /Help/
 /Modules/
 /Scripts/
-/ignore/
+**/ignore/**

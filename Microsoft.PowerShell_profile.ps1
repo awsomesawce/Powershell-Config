@@ -11,9 +11,6 @@ $env:PSModulePath = @(
     $env:PSModulePath
 ) -join [IO.Path]::PathSeparator
 
-# Dot-source functions
-. "$psscriptroot/functions/Get-ProjectDirectory.ps1"
-
 # Moved Get-InstalledThemes to MyUtils module
 
 $Script:msyslocation = "$env:USERPROFILE\scoop\apps\msys2\current"
@@ -28,7 +25,7 @@ Import-Module $env:USERPROFILE/Documents/BASICS/SearchTools/SearchTools.psd1
 
 new-alias g git -Description "Super short git invokation ftw.  1/3 the length!"
 
-# Extra completions
+# Extra completions - disable if shell startup is slow
 (&mise activate pwsh) | out-string | Invoke-Expression
 (&gh completion --shell powershell) | out-string | Invoke-Expression
 (&mise completions pwsh) | out-string | Invoke-Expression

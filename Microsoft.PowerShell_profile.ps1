@@ -3,7 +3,7 @@
 # Environment Variables
 $env:POWERSHELL_TELEMETRY_OPTOUT = 1
 $env:PAGER = "less"
-$env:PATH = "C:/Users/Carl/bin;$env:PATH"
+$env:PATH = "$env:USERPROFILE/bin;$env:PATH"
 
 # Edit PSModulePath
 $env:PSModulePath = @(
@@ -26,10 +26,10 @@ Import-Module $env:USERPROFILE/Documents/BASICS/SearchTools/SearchTools.psd1
 new-alias g git -Description "Super short git invokation ftw.  1/3 the length!"
 
 # Extra completions - disable if shell startup is slow
-(&mise activate pwsh) | out-string | Invoke-Expression
+#(&mise activate pwsh) | out-string | Invoke-Expression
 (&gh completion --shell powershell) | out-string | Invoke-Expression
-(&mise completions pwsh) | out-string | Invoke-Expression
-(&aube completion powershell) | out-string | Invoke-Expression
+#(&mise completions pwsh) | out-string | Invoke-Expression
+#(&aube completion powershell) | out-string | Invoke-Expression
 
 # Prompt
 if (Get-Command oh-my-posh -ErrorAction Ignore) {
